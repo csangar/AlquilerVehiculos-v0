@@ -150,5 +150,4 @@ public class TurismoTest {
 	void toStringDevuelveLaCadenaEsperada() {
 		assertEquals(String.format("%s %s (%sCV) - %s", MARCA_VALIDA, MODELO_VALIDO, CILINDRADA_VALIDA, MATRICULA_VALIDA, "disponible"), turismo.toString());
 	}
-
 }
