@@ -1,14 +1,16 @@
 package org.iesalandalus.programacion.alquilervehiculos.vista;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Alquiler;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Turismo;
+import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class Consola {
-	private static final String PATRON_FECHA="";
-	private static final String FORMATO_FECHA="";
+	private static final String PATRON_FECHA="dd/MM/yyyy";
+	private static final DateTimeFormatter FORMATO_FECHA= DateTimeFormatter.ofPattern(PATRON_FECHA);
 	
 	private Consola() {
 		
@@ -29,41 +31,64 @@ public class Consola {
 	}
 	private static String leerCadena(String mensaje) {
 		System.out.println(mensaje);
-		
-		return mensaje;
+		String cadena = Entrada.cadena();
+		return cadena;
 	}
 	private static Integer leerEntero(String mensaje) {
-		return null;
+		System.out.println(mensaje);
+		int entero = Entrada.entero();
+		return entero;
 	}
 	private static LocalDate leerFecha(String mensaje) {
-		return null;
+		LocalDate fecha = LocalDate.parse(leerCadena(mensaje), FORMATO_FECHA);
+		return fecha;
 	}
 	public static Opcion elegirOpcion() {
-		
-		return null;
+		int opcion;
+		Opcion o = null;
+		do {
+			opcion = leerEntero("Elige la opcion que desear realizar");
+			o = Opcion.get(opcion);
+		}while(o == null);
+		return o;
 	}
 	public static Cliente leerCliente() {
-		return null;
+		String nombre = leerNombre();
+		String dni = leerCadena("Introduce el dni del cliente");
+		String telefono =leerTelefono();
+		return new Cliente(nombre, dni, telefono);
 	}
 	public static Cliente leerClienteDni() {
-		return null;
+		Cliente cliente = leerClienteDni();
+		return cliente;
 	}
 	public static String leerNombre() {
-		return null;
+		String nombre = leerCadena("Introduce el nombre del cliente");
+		return nombre;
 	}
 	public static String leerTelefono() {
-		return null;
+		String telefono = leerCadena("Introduce el telefono del cliente");
+		return telefono;
 	}
 	public static Turismo leerTurismo() {
-		return null;
+		String marca = leerCadena("Introduce la marca del turismo");
+		String modelo = leerCadena("Introduce el modelo del turismo");
+		int cilindrada = leerEntero("Introduce la cilidrada del turismo");
+		String matricula = leerCadena("Introduce la matricula del turismo");
+		return new Turismo(marca, modelo, cilindrada, matricula);
 	}
 	public static Turismo leerTurismoMatricula() {
-		return null;
+		Turismo turismo = leerTurismoMatricula();
+		return turismo;
 	}
 	public static Alquiler leerAlquiler() {
-		return null;
+		Cliente cliente = leerCliente();
+		Turismo turismo = leerTurismo();
+		LocalDate fechaAlquiler = leerFecha("Introduce la fecha de alquiler");
+		return new Alquiler(cliente, turismo, fechaAlquiler);
 	}
 	public static LocalDate leerFechaDevolucion() {
-		return null;
+		LocalDate FechaDevolucion = leerFecha("Introoduce la fecha de devolucion");
+		return FechaDevolucion;
 	}
 }
