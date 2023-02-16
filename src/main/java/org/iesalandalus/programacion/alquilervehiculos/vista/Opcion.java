@@ -22,14 +22,14 @@ public enum Opcion {
 
     private String cadena;
 
-    private boolean esOrdinalValido(int ordinal) {
+    private static boolean esOrdinalValido(int ordinal) {
         boolean validar = false;
         if( ordinal >= 0 && ordinal < Opcion.values().length) {
             validar = true;
         }
         return validar;
     }
-    public Opcion get(int ordinal) {
+    public static Opcion get(int ordinal) {
         Opcion opcion = null;
         if(esOrdinalValido(ordinal)) {
             opcion = Opcion.values()[ordinal];

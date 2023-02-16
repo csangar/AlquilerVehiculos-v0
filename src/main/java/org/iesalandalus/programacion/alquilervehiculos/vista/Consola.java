@@ -14,12 +14,22 @@ public class Consola {
 		
 	}
 	public static void mostrarCabecera(String mensaje) {
-		
+		String subrayado = "";
+		System.out.println(mensaje);
+		for(int i = 0; i < mensaje.length();i++) {
+			subrayado = subrayado +"-";
+		}
+		System.out.println(subrayado);
 	}
 	public static void mostrarMenu() {
-		
+		mostrarCabecera("Menu de opciones disponibles");
+		for(Opcion opcion : Opcion.values()) {
+			System.out.println(opcion);
+		}
 	}
 	private static String leerCadena(String mensaje) {
+		System.out.println(mensaje);
+		
 		return mensaje;
 	}
 	private static Integer leerEntero(String mensaje) {
@@ -29,6 +39,7 @@ public class Consola {
 		return null;
 	}
 	public static Opcion elegirOpcion() {
+		
 		return null;
 	}
 	public static Cliente leerCliente() {
