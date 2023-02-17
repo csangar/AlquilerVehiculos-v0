@@ -18,9 +18,11 @@ public class Controlador {
 	public Controlador(Vista vista, Modelo modelo) {
 		this.vista = vista;
 		this.modelo = modelo;
+		vista.setControlador(this);
 	}
-	public void comenzar() {
+	public void comenzar() throws OperationNotSupportedException {
 		modelo.comenzar();
+		vista.comenzar();
 	}
 	public void terminar() {
 		modelo.terminar();

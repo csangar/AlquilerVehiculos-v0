@@ -24,18 +24,18 @@ public class Consola {
 		System.out.println(subrayado);
 	}
 	public static void mostrarMenu() {
-		mostrarCabecera("Menu de opciones disponibles");
+		mostrarCabecera("Menu de opciones disponibles:");
 		for(Opcion opcion : Opcion.values()) {
 			System.out.println(opcion);
 		}
 	}
 	private static String leerCadena(String mensaje) {
-		System.out.println(mensaje);
+		System.out.print(mensaje);
 		String cadena = Entrada.cadena();
 		return cadena;
 	}
 	private static Integer leerEntero(String mensaje) {
-		System.out.println(mensaje);
+		System.out.print(mensaje);
 		int entero = Entrada.entero();
 		return entero;
 	}
@@ -47,14 +47,14 @@ public class Consola {
 		int opcion;
 		Opcion o = null;
 		do {
-			opcion = leerEntero("Elige la opcion que desear realizar");
+			opcion = leerEntero("Elige la opcion que desear realizar: ");
 			o = Opcion.get(opcion);
 		}while(o == null);
 		return o;
 	}
 	public static Cliente leerCliente() {
 		String nombre = leerNombre();
-		String dni = leerCadena("Introduce el dni del cliente");
+		String dni = leerCadena("Introduce el dni del cliente: ");
 		String telefono =leerTelefono();
 		return new Cliente(nombre, dni, telefono);
 	}
@@ -63,18 +63,18 @@ public class Consola {
 		return cliente;
 	}
 	public static String leerNombre() {
-		String nombre = leerCadena("Introduce el nombre del cliente");
+		String nombre = leerCadena("Introduce el nombre del cliente: ");
 		return nombre;
 	}
 	public static String leerTelefono() {
-		String telefono = leerCadena("Introduce el telefono del cliente");
+		String telefono = leerCadena("Introduce el telefono del cliente: ");
 		return telefono;
 	}
 	public static Turismo leerTurismo() {
-		String marca = leerCadena("Introduce la marca del turismo");
-		String modelo = leerCadena("Introduce el modelo del turismo");
-		int cilindrada = leerEntero("Introduce la cilidrada del turismo");
-		String matricula = leerCadena("Introduce la matricula del turismo");
+		String marca = leerCadena("Introduce la marca del turismo: ");
+		String modelo = leerCadena("Introduce el modelo del turismo: ");
+		int cilindrada = leerEntero("Introduce la cilidrada del turismo: ");
+		String matricula = leerCadena("Introduce la matricula del turismo: ");
 		return new Turismo(marca, modelo, cilindrada, matricula);
 	}
 	public static Turismo leerTurismoMatricula() {
@@ -84,11 +84,11 @@ public class Consola {
 	public static Alquiler leerAlquiler() {
 		Cliente cliente = leerCliente();
 		Turismo turismo = leerTurismo();
-		LocalDate fechaAlquiler = leerFecha("Introduce la fecha de alquiler");
+		LocalDate fechaAlquiler = leerFecha("Introduce la fecha de alquiler: ");
 		return new Alquiler(cliente, turismo, fechaAlquiler);
 	}
 	public static LocalDate leerFechaDevolucion() {
-		LocalDate FechaDevolucion = leerFecha("Introoduce la fecha de devolucion");
+		LocalDate FechaDevolucion = leerFecha("Introoduce la fecha de devolucion: ");
 		return FechaDevolucion;
 	}
 }
