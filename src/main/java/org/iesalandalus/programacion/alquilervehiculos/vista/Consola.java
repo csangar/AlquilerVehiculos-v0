@@ -3,6 +3,8 @@ package org.iesalandalus.programacion.alquilervehiculos.vista;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.annotation.processing.SupportedSourceVersion;
+
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Alquiler;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Turismo;
@@ -59,8 +61,8 @@ public class Consola {
 		return new Cliente(nombre, dni, telefono);
 	}
 	public static Cliente leerClienteDni() {
-		Cliente cliente = leerClienteDni();
-		return cliente;
+		String dni = leerCadena("Introduce un dni: ");
+		return Cliente.getClienteConDni(dni);
 	}
 	public static String leerNombre() {
 		String nombre = leerCadena("Introduce el nombre del cliente: ");
@@ -78,12 +80,12 @@ public class Consola {
 		return new Turismo(marca, modelo, cilindrada, matricula);
 	}
 	public static Turismo leerTurismoMatricula() {
-		Turismo turismo = leerTurismoMatricula();
-		return turismo;
+		String matricula = leerCadena("Introduce una matricula: ");
+		return Turismo.getTurismoConMatricula(matricula);
 	}
 	public static Alquiler leerAlquiler() {
-		Cliente cliente = leerCliente();
-		Turismo turismo = leerTurismo();
+		Cliente cliente = leerClienteDni();
+		Turismo turismo = leerTurismoMatricula();
 		LocalDate fechaAlquiler = leerFecha("Introduce la fecha de alquiler: ");
 		return new Alquiler(cliente, turismo, fechaAlquiler);
 	}

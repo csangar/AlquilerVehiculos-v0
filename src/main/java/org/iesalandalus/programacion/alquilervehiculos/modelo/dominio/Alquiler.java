@@ -32,7 +32,7 @@ public class Alquiler {
 		setTurismo(new Turismo(alquiler.turismo.getMarca(), alquiler.turismo.getModelo(),
 				alquiler.turismo.getCilindrada(), alquiler.turismo.getMatricula()));
 		setFechaAlquiler(alquiler.fechaAlquiler);
-		setFechaDevolucion(alquiler.fechaDevolucion);
+		this.fechaDevolucion = alquiler.getFechaDevolucion();
 	}
 
 	public Cliente getCliente() {

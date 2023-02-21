@@ -65,18 +65,7 @@ public class Cliente {
 		String caracteres = "TRWAGMYFPDXBNJZSQVHLCKE";
 		String numero = dni.substring(0, 8);
 		Character caracter = dni.charAt(8);
-		/*
-		 * if ( dni.substring(8).equals(caracteres.charAt(Integer.parseInt(numero) %
-		 * 23))) { comprobacion = true; }
-		 */
 		return caracter.equals(caracteres.charAt(Integer.parseInt(numero) % 23));
-		/*
-		 * String[] caracteres =
-		 * {"T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H",
-		 * "L","C","K","E"}; String numero = dni.substring(0, 8); String caracter =
-		 * dni.substring(8, 9); int num = Integer.parseInt(numero); String caracterNum =
-		 * caracteres[num]; return caracter.equals(caracterNum);
-		 */
 	}
 
 	public String getTelefono() {
@@ -101,7 +90,7 @@ public class Cliente {
 			if (comprobarLetraDni(dniValido) == false) {
 				throw new IllegalArgumentException("ERROR: La letra del DNI no es correcta.");
 			} else {
-				return new Cliente("Pepe Lopez", "11223344B", "911763247");
+				return new Cliente("Pepe Lopez", dniValido, "911763247");
 			}
 		}
 	}

@@ -78,7 +78,7 @@ public class Turismo {
 		if (!matricula.matches(ER_MATRICULA)) {
 			throw new IllegalArgumentException("ERROR: La matrícula no tiene un formato válido.");
 		}
-			this.matricula = matricula;
+		this.matricula = matricula;
 	}
 
 	public static Turismo getTurismoConMatricula(String matricula) {
@@ -88,7 +88,7 @@ public class Turismo {
 		if (!matricula.matches(ER_MATRICULA)) {
 			throw new IllegalArgumentException("ERROR: La matrícula no tiene un formato válido.");
 		} else
-			return new Turismo("Seat","León",90,"1234BCD");
+			return new Turismo("Seat", "León", 90, matricula);
 	}
 
 	@Override
@@ -110,7 +110,6 @@ public class Turismo {
 
 	@Override
 	public String toString() {
-		return marca + " " + modelo + " (" + cilindrada + "CV) - "
-				+ matricula;
+		return marca + " " + modelo + " (" + cilindrada + "CV) - " + matricula;
 	}
 }

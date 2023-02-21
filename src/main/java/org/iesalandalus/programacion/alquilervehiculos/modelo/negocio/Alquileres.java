@@ -94,7 +94,8 @@ public class Alquileres {
 			throw new NullPointerException("ERROR: No se puede buscar un alquiler nulo.");
 		}
 		if (coleccionAlquileres.contains(alquiler)) {
-			return alquiler;
+			int nuevoA = coleccionAlquileres.indexOf(alquiler);
+			return coleccionAlquileres.get(nuevoA);
 		}
 		return null;
 	}

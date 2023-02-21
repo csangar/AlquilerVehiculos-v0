@@ -36,7 +36,8 @@ public class Turismos {
 			throw new NullPointerException("ERROR: No se puede buscar un turismo nulo.");
 		}
 		if (coleccionTurismos.contains(turismo)) {
-			return turismo;
+			int nuevoT = coleccionTurismos.indexOf(turismo);
+			return coleccionTurismos.get(nuevoT);
 		}
 		return null;
 	}
