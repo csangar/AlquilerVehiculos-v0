@@ -27,11 +27,9 @@ public class Alquiler {
 		if (alquiler == null) {
 			throw new NullPointerException("ERROR: No es posible copiar un alquiler nulo.");
 		}
-		setCliente(
-				new Cliente(alquiler.cliente.getNombre(), alquiler.cliente.getDni(), alquiler.cliente.getTelefono()));
-		setTurismo(new Turismo(alquiler.turismo.getMarca(), alquiler.turismo.getModelo(),
-				alquiler.turismo.getCilindrada(), alquiler.turismo.getMatricula()));
-		setFechaAlquiler(alquiler.fechaAlquiler);
+		this.cliente = new Cliente(alquiler.getCliente());
+		this.turismo = new Turismo(alquiler.getTurismo());
+		this.fechaAlquiler = alquiler.fechaAlquiler;
 		this.fechaDevolucion = alquiler.getFechaDevolucion();
 	}
 
@@ -83,8 +81,7 @@ public class Alquiler {
 			throw new IllegalArgumentException("ERROR: La fecha de devolución no puede ser futura.");
 		}
 		if (fechaDevolucion.compareTo(getFechaAlquiler()) <= 0) {
-			throw new IllegalArgumentException(
-					"ERROR: La fecha de devolución debe ser posterior a la fecha de alquiler.");
+			throw new IllegalArgumentException("ERROR: La fecha de devolución debe ser posterior a la fecha de alquiler.");
 		}
 
 		this.fechaDevolucion = fechaDevolucion;
@@ -134,8 +131,7 @@ public class Alquiler {
 		if (getClass() != obj.getClass())
 			return false;
 		Alquiler other = (Alquiler) obj;
-		return Objects.equals(cliente, other.cliente) && Objects.equals(fechaAlquiler, other.fechaAlquiler)
-				&& Objects.equals(fechaDevolucion, other.fechaDevolucion) && Objects.equals(turismo, other.turismo);
+		return Objects.equals(cliente, other.cliente) && Objects.equals(fechaAlquiler, other.fechaAlquiler) && Objects.equals(turismo, other.turismo);
 	}
 
 }

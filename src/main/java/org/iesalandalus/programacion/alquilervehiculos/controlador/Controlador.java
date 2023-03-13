@@ -43,7 +43,7 @@ public class Controlador {
 		return modelo.buscar(turismo);
 	}
 	public Alquiler buscar(Alquiler alquiler) {
-	return modelo.buscar(alquiler);	
+		return modelo.buscar(alquiler);	
 	}
 	public void modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
 		modelo.modificar(cliente, nombre, telefono);

@@ -33,36 +33,38 @@ public class Modelo {
 	}
 
 	public void insertar(Cliente cliente) throws OperationNotSupportedException {
-		clientes.insertar(cliente);
+		clientes.insertar(new Cliente(cliente));
 	}
 
 	public void insertar(Turismo turismo) throws OperationNotSupportedException {
-		turismos.insertar(turismo);
+		turismos.insertar(new Turismo(turismo));
 	}
 
 	public void insertar(Alquiler alquiler) throws OperationNotSupportedException {
 		if (alquiler == null) {
 			throw new NullPointerException("ERROR: No se puede realizar un alquiler nulo.");
 		}
-		if (buscar(alquiler.getCliente()) == null) {
+		Cliente cliente = clientes.buscar(alquiler.getCliente());
+		if (cliente == null) {
 			throw new OperationNotSupportedException("ERROR: No existe el cliente del alquiler.");
 		}
-		if (buscar(alquiler.getTurismo()) == null) {
+		Turismo turismo = turismos.buscar(alquiler.getTurismo());
+		if (turismo == null) {
 			throw new OperationNotSupportedException("ERROR: No existe el turismo del alquiler.");
 		}
-		alquileres.insertar(alquiler);
+		alquileres.insertar(new Alquiler(cliente, turismo, alquiler.getFechaAlquiler()));
 	}
 
 	public Cliente buscar(Cliente cliente) {
-		return clientes.buscar(cliente);
+		return new Cliente(clientes.buscar(cliente));
 	}
 
 	public Turismo buscar(Turismo turismo) {
-		return turismos.buscar(turismo);
+		return new Turismo(turismos.buscar(turismo));
 	}
 
 	public Alquiler buscar(Alquiler alquiler) {
-		return alquileres.buscar(alquiler);
+		return new Alquiler(alquileres.buscar(alquiler));
 	}
 
 	public void modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
@@ -70,10 +72,11 @@ public class Modelo {
 	}
 
 	public void devolver(Alquiler alquiler, LocalDate fechaDevolucion) throws OperationNotSupportedException {
-		if (alquileres.buscar(alquiler) == null) {
+		Alquiler alquilerBuscado = alquileres.buscar(alquiler);
+		if (alquilerBuscado == null) {
 			throw new OperationNotSupportedException("ERROR: No existe el alquiler a devolver.");
 		}
-		alquiler.devolver(fechaDevolucion);
+		alquilerBuscado.devolver(fechaDevolucion);
 	}
 
 	public void borrar(Cliente cliente) throws OperationNotSupportedException {

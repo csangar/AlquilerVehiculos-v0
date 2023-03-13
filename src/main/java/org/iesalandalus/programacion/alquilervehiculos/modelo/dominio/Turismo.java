@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Turismo {
 	private static final String ER_MARCA = "([A-Z][a-z]+([ -]?[A-Z][a-z]+)?)|[A-Z]+";
-	private static final String ER_MATRICULA = "[0-9]{4}[^AEIOU|^a-z]{3}";
+	private static final String ER_MATRICULA = "\\d{4}[^AEIOU|^a-z]{3}";
 	private String marca;
 	private String modelo;
 	private int cilindrada;
@@ -21,10 +21,10 @@ public class Turismo {
 		if (turismo == null) {
 			throw new NullPointerException("ERROR: No es posible copiar un turismo nulo.");
 		}
-		setMarca(turismo.marca);
-		setCilindrada(turismo.cilindrada);
-		setMatricula(turismo.matricula);
-		setModelo(turismo.modelo);
+		this.marca = turismo.getMarca();
+		this.cilindrada = turismo.getCilindrada();
+		this.matricula = turismo.getMatricula();
+		this.modelo = turismo.getModelo();
 	}
 
 	public String getMarca() {
@@ -60,11 +60,10 @@ public class Turismo {
 	}
 
 	private void setCilindrada(int cilindrada) {
-		if (cilindrada < 5000 && cilindrada > 0) {
-			this.cilindrada = cilindrada;
-		} else {
+		if (cilindrada >= 5000 || cilindrada <= 0) {
 			throw new IllegalArgumentException("ERROR: La cilindrada no es correcta.");
 		}
+		this.cilindrada = cilindrada;
 	}
 
 	public String getMatricula() {
@@ -82,13 +81,14 @@ public class Turismo {
 	}
 
 	public static Turismo getTurismoConMatricula(String matricula) {
-		if (matricula == null) {
-			throw new NullPointerException("ERROR: La matrícula no puede ser nula.");
-		}
-		if (!matricula.matches(ER_MATRICULA)) {
-			throw new IllegalArgumentException("ERROR: La matrícula no tiene un formato válido.");
-		} else
-			return new Turismo("Seat", "León", 90, matricula);
+		/*
+		 * if (matricula == null) { throw new
+		 * NullPointerException("ERROR: La matrícula no puede ser nula."); } if
+		 * (!matricula.matches(ER_MATRICULA)) { throw new
+		 * IllegalArgumentException("ERROR: La matrícula no tiene un formato válido.");
+		 * } else
+		 */
+		return new Turismo("Seat", "León", 90, matricula);
 	}
 
 	@Override
@@ -110,6 +110,6 @@ public class Turismo {
 
 	@Override
 	public String toString() {
-		return marca + " " + modelo + " (" + cilindrada + "CV) - " + matricula;
+		return String.format("%s %s (%sCV) - %s", getMarca(), getModelo(), cilindrada, getMatricula());
 	}
 }
